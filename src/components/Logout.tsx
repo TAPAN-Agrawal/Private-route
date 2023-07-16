@@ -1,20 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useContext } from "react";
+import { MyContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 function Logout() {
-
+  // const { change,login } = useContext(MyContext)
+  const navigate = useNavigate()
 const logoutHandler = () =>{
   let users: any[] = JSON.parse(localStorage.getItem('Users') || '[]');
-  let current:any[] = JSON.parse(localStorage.getItem('current') || '');
+  let current: any[] = JSON.parse(localStorage.getItem('current') || '');
 
-  const updated = users.filter((x:any)=>{return x.name !== current})
- localStorage.setItem('Users', JSON.stringify(updated))
- localStorage.setItem('login','false');
- localStorage.setItem('current','false')
+  // const updated = users.filter((x:any)=>{return x.name !== current})
+//  localStorage.setItem('Users', JSON.stringify(updated))
+ localStorage.setItem('login',"false");
+  localStorage.setItem('current', 'false');
+  localStorage.setItem('registered', 'false');
+  // change('false')
+  navigate('/')
   // localStorage.clear()
 }
-   useEffect(()=>{
-        // const a = 
-   },[])
+useEffect(() => {
+  // console.log("login", login);
+  // if (JSON.parse(localStorage.getItem('login') || '') !== 'true') {
+  //   navigate('/login');
+  // }
+
+  let da: any = JSON.parse(localStorage.getItem('login') || '').toString();
+  if (da) {
+    if (da === "false") {
+             navigate('/login');
+           }
+          }
+
+  console.log("logout reached");
+}, []);
 
   return <div>Logout
     <button onClick={logoutHandler}>Logout</button>

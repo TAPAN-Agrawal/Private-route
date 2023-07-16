@@ -16,17 +16,23 @@ function Register() {
     const [password,setPassword] = useState<any>()
 
 
-
+  const[alreadyUser,setalreadyUser]=useState<any>([])
 
 
 
  const registerHandler = () => {
   
-const temp=[ ...users,{ name: name, password: password }]
+   const r = alreadyUser.find((x: any) => x.name === name)
+   if(r){
+        alert("User already exists")
+       return
+      }
+    const temp=[ ...users,{ name: name, password: password }]
     setUsers(temp);
     localStorage.setItem('Users',JSON.stringify(temp))
-   alert("user registered successfully");
-        navigate('/login')
+     alert("user registered successfully");
+   navigate('/login')
+   localStorage.setItem('registered',"true")
   };
 const nameHandler = (e:any) =>{
     setName(e.target.value); 
@@ -39,11 +45,19 @@ const passwordHandler = (e:any)=>{
 
 
   useEffect(()=>{
-   
-
-    if(localStorage.getItem("login") === "true"){
+     if(localStorage.getItem("login") === "true"){
      navigate('/')
     }
+    if (localStorage.getItem("registered") === "true") {
+      navigate('/login')
+    }
+
+
+    let temp: any[] = JSON.parse(localStorage.getItem('Users') || '[]');
+    setalreadyUser(temp)
+
+
+
 },[])
   return <div>
     <h1>Register</h1>
