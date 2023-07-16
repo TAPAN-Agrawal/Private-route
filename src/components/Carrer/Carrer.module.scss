@@ -1,0 +1,11 @@
+@import '../../Global/Global.module.scss'; 
+.main{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-family;
+    font-size: 100px;
+    background: $background;
+    color: $color;
+}

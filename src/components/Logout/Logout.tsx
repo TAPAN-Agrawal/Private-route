@@ -1,5 +1,5 @@
 import React, { useEffect,useContext } from "react";
-import { MyContext } from "../App";
+import { MyContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 function Logout() {
@@ -29,13 +29,14 @@ useEffect(() => {
     if (da === "false") {
              navigate('/login');
            }
-          }
+  }
+  logoutHandler()
 
   console.log("logout reached");
 }, []);
 
   return <div>Logout
-    <button onClick={logoutHandler}>Logout</button>
+    {/* <button onClick={logoutHandler}>Logout</button> */}
   </div>;
 }
 

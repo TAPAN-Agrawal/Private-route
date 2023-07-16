@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Login from "./Login";
+import Login from "../Login/Login";
 import {  Navigate, Route, useNavigate } from "react-router-dom";
 
 function ProtectedRoute(Props:any) {

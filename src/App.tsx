@@ -1,54 +1,31 @@
 import React, { createContext, useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { NavLink, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import About from "./components/About";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Logout from "./components/Logout";
-import Skill from "./components/Skill";
-import Register from "./components/Register";
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import About from "./components/About/About";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Logout from "./components/Logout/Logout";
+import Skill from "./components/skill/Skill";
+import Register from "./components/Register/Register";
+import Carrer from "./components/Carrer/Carrer";
+import Navbar from "./components/Navbar/Navbar";
+import Notfound from "./components/404/Notfound";
 
 const MyContext = createContext<any | null>(null);
 
 
 function App() {
-  const [login, setlogin] = useState<any>()
-  // const change = (a:any) => {
-  //   setlogin(a)
-  // }
-
-  setInterval(() => {
-    try {
-      let data = JSON.parse(localStorage.getItem('login') || '');
-      let login = data ? data.toString() : ''; // Set login to an empty string if data is null or undefined
-  
-      setlogin(login);
-      console.log('login', typeof login);
-    } catch (error) {
-      // Handle the exception here
-      // console.error('Error retrieving data from local storage:', error);
-    }
-  }, 1000);
+ 
   
 
   useEffect(() => {
    
   }, []);
   return (
-    <div className="App">
-      {login}
+    <div >
       
-        <div>
-        <NavLink to="/">Home-</NavLink>
-      {login !== "true" ? <NavLink to='/register'>Register-</NavLink>: null}  
-       {login !== "true" ? <NavLink to="/login">Login-</NavLink>:null} 
-        <NavLink to="/about">About-</NavLink>
-        <NavLink to="/skill">Skill-</NavLink>
-        {/* <h1>this{islogin}</h1> */}
-    {login === "true" ? <NavLink to="/logout">Logout-</NavLink>:null } 
-      </div>
+      <Navbar/>
       <Routes>
         <Route  path="/" element={<Home />} />
         <Route path="/register" element={<Register/>}/>
@@ -56,6 +33,8 @@ function App() {
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/about" element={<ProtectedRoute Component={About} />} />
         <Route path="/skill" element={<ProtectedRoute Component={Skill} />} />
+        <Route path="/carrer" element={<ProtectedRoute Component={Carrer} />} />
+        <Route path="*" element={ <Notfound/>} />
       </Routes>
       
     </div>
