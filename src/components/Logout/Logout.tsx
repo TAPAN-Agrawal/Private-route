@@ -1,6 +1,7 @@
 import React, { useEffect,useContext } from "react";
 import { MyContext } from "../../App";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Logout() {
   // const { change,login } = useContext(MyContext)
@@ -14,6 +15,7 @@ const logoutHandler = () =>{
  localStorage.setItem('login',"false");
   localStorage.setItem('current', 'false');
   localStorage.setItem('registered', 'false');
+  toast('User logout')
   // change('false')
   navigate('/')
   // localStorage.clear()

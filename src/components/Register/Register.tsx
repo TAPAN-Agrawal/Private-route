@@ -2,7 +2,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Field, Form, Formik, ErrorMessage } from 'formik'
 import * as yup from 'yup';
-import classes from './Register.module.scss'
+import classes from './Register.module.scss';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
   const initialValue = {
@@ -41,23 +43,23 @@ const [country, setCountry] = useState<any>()
 
 
  const registerHandler = (values:any) => {
-  
   let names=values.name;
   let emails=values.email;
    const r = alreadyUser.find((x: any) => x.name === names);
    const e = alreadyUser.find((x:any) => x.email === emails)
+   
    if(r){
-        alert("User already exists")
+        toast("User already exists")
        return
       }
       if(e){
-        alert("email already exists");
+        toast("email already exists");
         return
       }
     const temp=[ ...users,{ name: values.name, password: values.password,email: values.email}]
     setUsers(temp);
     localStorage.setItem('Users',JSON.stringify(temp))
-     alert("user registered successfully");
+     toast("user registered successfully");
    navigate('/login')
    localStorage.setItem('registered',"true")
   };
@@ -88,12 +90,12 @@ const passwordHandler = (e:any)=>{
 
     let temp: any[] = JSON.parse(localStorage.getItem('Users') || '[]');
     setalreadyUser(temp)
-    console.log("register",temp)
 
 
 
 },[])
   return <div className={classes.parent}>
+  
     <div className={classes.h1}>Register</div>
     <div className={classes.main}>
     

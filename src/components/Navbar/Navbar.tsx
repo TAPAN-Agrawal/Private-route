@@ -14,7 +14,7 @@ function Navbar() {
         let login = data ? data.toString() : ''; // Set login to an empty string if data is null or undefined
     
         setlogin(login);
-        console.log('login', typeof login);
+        // console.log('login', typeof login);
       } catch (error) {
         // Handle the exception here
         // console.error('Error retrieving data from local storage:', error);

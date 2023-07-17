@@ -4,6 +4,8 @@ import { MyContext } from "../../App";
 import { Field, Form, Formik, ErrorMessage } from 'formik'
 import * as yup from 'yup';
 import classes from './Login.module.scss'
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const initialValue = {
@@ -14,7 +16,7 @@ function Login() {
   const validationSchema = yup.object().shape({
     name: yup.string().required("Name required"),
    
-    password: yup.string().required("Password required"),
+    password: yup.string().min(8).required("Password required"),
     
    
 
@@ -35,14 +37,15 @@ const [password,setPassword] = useState<any>()
            localStorage.setItem("login", 'true');
           //  change("true")
             localStorage.setItem("current",JSON.stringify(values.name))
+            toast('Logged in successfully')
              navigate('/')
          }
          else{
-          alert('password is incorrect')
+          toast('password is incorrect')
          }
     }
     else{
-         alert("user not found")
+         toast('user not found')
     }
 
   }
@@ -76,6 +79,8 @@ const [password,setPassword] = useState<any>()
   }, [])
   
   return <div className={classes.parent}>
+   
+
   <div className={classes.h1}>Login</div>
   <div className={classes.main}>
   
