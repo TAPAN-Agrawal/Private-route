@@ -26,15 +26,15 @@ const[users,setUsers] =useState<any>([])
 const [name,setName] = useState<any>()
 const [password,setPassword] = useState<any>()
 
-  const loginHandler = ()=>{
-    const u = users.find((x:any)=>x.name === name)
-
+  const loginHandler = (values:any)=>{
+   let names=values.name
+    const u = users.find((x:any)=> x.name === names) 
 
     if(u){
-         if(u.password === password){
+         if(u.password === values.password){
            localStorage.setItem("login", 'true');
           //  change("true")
-            localStorage.setItem("current",JSON.stringify(name))
+            localStorage.setItem("current",JSON.stringify(values.name))
              navigate('/')
          }
          else{
@@ -68,6 +68,7 @@ const [password,setPassword] = useState<any>()
  
   useEffect(()=>{
     let da: any[] = JSON.parse(localStorage.getItem('Users') || '[]');
+    console.log("this is da",da);
     setUsers(da)
          if(localStorage.getItem("login") === "true"){
           navigate('/')

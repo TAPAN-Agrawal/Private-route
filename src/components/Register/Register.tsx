@@ -14,8 +14,8 @@ function Register() {
   }
   const validationSchema = yup.object().shape({
     name: yup.string().required("Name required"),
-    email: yup.string().required("Email required"),
-    password: yup.string().required("Password required"),
+    email: yup.string().email().required("Email required"),
+    password: yup.string().min(8).required("Password required"),
     
     country: yup.string().required("Country required")
 
@@ -40,14 +40,16 @@ const [country, setCountry] = useState<any>()
 
 
 
- const registerHandler = () => {
+ const registerHandler = (values:any) => {
   
-   const r = alreadyUser.find((x: any) => x.name === name)
+  let names=values.name;
+   const r = alreadyUser.find((x: any) => x.name === names);
+debugger;   
    if(r){
         alert("User already exists")
        return
       }
-    const temp=[ ...users,{ name: name, password: password }]
+    const temp=[ ...users,{ name: values.name, password: values.password }]
     setUsers(temp);
     localStorage.setItem('Users',JSON.stringify(temp))
      alert("user registered successfully");
@@ -81,6 +83,7 @@ const passwordHandler = (e:any)=>{
 
     let temp: any[] = JSON.parse(localStorage.getItem('Users') || '[]');
     setalreadyUser(temp)
+    console.log("register",temp)
 
 
 
