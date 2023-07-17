@@ -43,13 +43,18 @@ const [country, setCountry] = useState<any>()
  const registerHandler = (values:any) => {
   
   let names=values.name;
+  let emails=values.email;
    const r = alreadyUser.find((x: any) => x.name === names);
-debugger;   
+   const e = alreadyUser.find((x:any) => x.email === emails)
    if(r){
         alert("User already exists")
        return
       }
-    const temp=[ ...users,{ name: values.name, password: values.password }]
+      if(e){
+        alert("email already exists");
+        return
+      }
+    const temp=[ ...users,{ name: values.name, password: values.password,email: values.email}]
     setUsers(temp);
     localStorage.setItem('Users',JSON.stringify(temp))
      alert("user registered successfully");
