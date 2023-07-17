@@ -15,6 +15,7 @@
 
 .main{
     @include display;
+    align-items: flex-start;
     height: 100vh;
     background: $background;
     .form{

@@ -1,10 +1,8 @@
-import React from 'react';
-import classes from './Carrer.module.scss'
+import React from "react";
+import classes from "./Carrer.module.scss";
 
 function Carrer() {
-  return (
-    <div className={classes.main}>Carrer</div>
-  )
+  return <div className={classes.main}>Carrer</div>;
 }
 
-export default Carrer
+export default Carrer;

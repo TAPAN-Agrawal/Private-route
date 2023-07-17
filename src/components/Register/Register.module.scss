@@ -1,36 +1,42 @@
 @import '../../Global/Global.module.scss';
+
 @mixin display {
-    display :flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.parent{
 
-    .h1{
+.parent {
+
+    .h1 {
         text-align: center;
         background: $background;
         color: $color;
         font-size: $font-size + 20px;
     }
 
-.main{
-    @include display;
-    height: 100vh;
-    background: $background;
-    .form{
+    .main {
+        @include display;
+        align-items: flex-start;
+        height: 100vh;
+        background: $background;
+
+        .form {
             // border: 2px solid green;
             box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
             height: 60vh;
             width: 30vw;
             padding-top: 23px;
-            .form_item{
+
+            .form_item {
                 height: 100px;
                 padding-left: 10%;
                 font-family: $font-family;
                 font-size: $font-size;
                 color: $secondary;
-                .child{
-                    border:2px solid $color;
+
+                .child {
+                    border: 2px solid $color;
                     width: 70%;
                     height: 25px;
                     border-radius: 20px;
@@ -41,21 +47,22 @@
                     padding-left: 15px;
                 }
 
-                .err{
-                    color:red;
+                .err {
+                    color: red;
                     font-size: $font-size-f;
-                    font-family:$font-family-f ;
+                    font-family: $font-family-f;
                 }
             }
-            .button{
+
+            .button {
                 background: $background;
                 color: $color;
                 border: none;
                 height: 30px;
                 font-family: $font-family;
                 width: 80%;
-               margin-left: 25px ;
+                margin-left: 25px;
             }
+        }
     }
-}
 }

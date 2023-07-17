@@ -11,7 +11,7 @@ import Register from "./components/Register/Register";
 import Carrer from "./components/Carrer/Carrer";
 import Navbar from "./components/Navbar/Navbar";
 import Notfound from "./components/404/Notfound";
-import { ToastContainer } from "react-toastify";
+import { Flip, ToastContainer } from "react-toastify";
 
 const MyContext = createContext<any | null>(null);
 
@@ -30,6 +30,7 @@ function App() {
         draggable
         pauseOnHover
         theme="light"
+        transition={Flip}
       />
       <Navbar />
       <Routes>
